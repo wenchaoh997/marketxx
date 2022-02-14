@@ -1,0 +1,47 @@
+[
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\tools\\color.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\tools\\color.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/tools/color.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\tools\\info.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\tools\\info.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/tools/info.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\menu.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\menu.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/menu.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\operation.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\operation.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/operation.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\utils.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\utils.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/utils.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\user.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\user.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/user.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\item.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\item.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/item.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\order.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\order.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/order.cxx"
+},
+{
+  "directory": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/Market.dir/includes_CXX.rsp -g -o CMakeFiles\\Market.dir\\src\\main.cxx.obj -c C:\\Users\\华硕电脑\\Documents\\git_workplace\\marketxx\\src\\main.cxx",
+  "file": "C:/Users/华硕电脑/Documents/git_workplace/marketxx/src/main.cxx"
+}
+]

@@ -1,0 +1,3 @@
+C:/Users/华硕电脑/Documents/git_workplace/marketxx/build/CMakeFiles/Market.dir
+C:/Users/华硕电脑/Documents/git_workplace/marketxx/build/CMakeFiles/edit_cache.dir
+C:/Users/华硕电脑/Documents/git_workplace/marketxx/build/CMakeFiles/rebuild_cache.dir
