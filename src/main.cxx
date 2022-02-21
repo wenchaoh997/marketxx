@@ -14,9 +14,9 @@ int main(){
     INFO app;
     for (int i = 0; i < 6; i++)
         app.id[i] = '0';
-    app._page = 0;
+    app._page = WELCOME;
     show_menu(&app);
-    app._page = 1;
+    app._page = MAIN_MENU;
 
     bool flag = false;
     while (true){

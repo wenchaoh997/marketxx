@@ -10,25 +10,27 @@ void menu_choice(INFO *info){
     std::cin.getline(info->command, 256);
     std::cin.clear();
 
-    if (info->_page == 1){
+    if (info->_page == MAIN_MENU){
         if (chareq(info->command, "1") || chareq(info->command, "login")){
-            info->_page = 11;
+            info->_page = LOGIN;
             login_page(info);
         }
-        else if (chareq(info->command, "2") || chareq(info->command, "sign up")){
-            info->_page = 12;
+        else if (chareq(info->command, "2") || chareq(info->command, "sign up") || chareq(info->command, "register")){
+            info->_page = REGISTER;
             register_page(info);
         }
         else if (chareq(info->command, "3") || chareq(info->command, "exit")){
-            info->_page = 14;
+            info->_page = EXIT;
             exit_page(info);
         }
         else
             std::cout << "\n[error] |Unexpected command, try again. \n";
     } /* Main Menu page */
-    else if (info->_page == 100){
-        if (chareq(info->command, "1") || chareq(info->command, "manage"))
+    else if (info->_page == USER_MENU){
+        if (chareq(info->command, "1") || chareq(info->command, "manage")){
             info->_page = 101;
+            manage_items(info);
+        }
         else if (chareq(info->command, "2") || chareq(info->command, "items"))
             info->_page = 102;
         else if (chareq(info->command, "3") || chareq(info->command, "search"))
@@ -36,7 +38,7 @@ void menu_choice(INFO *info){
         else if (chareq(info->command, "4") || chareq(info->command, "orders"))
             info->_page = 104;
         else if (chareq(info->command, "5") || chareq(info->command, "logout")){
-            info->_page = 13;
+            info->_page = LOGOUT;
             logout_page(info);
         }
         else if (chareq(info->command, "6") || chareq(info->command, "help"))
@@ -46,7 +48,7 @@ void menu_choice(INFO *info){
         else
             std::cout << "\n[error] |Unexpected command, try again. \n";
     } /* User Menu */
-    else if (info->_page == 200){
+    else if (info->_page == ADMIN_MENU){
         if (chareq(info->command, "1") || chareq(info->command, "items"))
             info->_page = 201;
         else if (chareq(info->command, "2") || chareq(info->command, "orders"))
@@ -54,7 +56,7 @@ void menu_choice(INFO *info){
         else if (chareq(info->command, "3") || chareq(info->command, "users"))
             info->_page = 203;
         else if (chareq(info->command, "4") || chareq(info->command, "logout")){
-            info->_page = 13;
+            info->_page = LOGOUT;
             logout_page(info);
         }
         else
@@ -77,11 +79,11 @@ void login_page(INFO *info){
     if (!userSign(info, name, passward)){
         std::cout << "\n[info] |Wrong user name or passward! Try again.\n";
         std::cout << "****Failed****\n";
-        info->_page = 1;
+        info->_page = MAIN_MENU;
     }
     else
         system("cls");
-}
+} /* login_page */
 
 void register_page(INFO *info){
     char name[40], passward[20];
@@ -101,8 +103,8 @@ void register_page(INFO *info){
         std::cout << "\n[info] |The user name is already exist. \n";
         std::cout << "****Failed****\n";
     }
-    info->_page = 1;
-}
+    info->_page = MAIN_MENU;
+} /* register_page */
 
 void logout_page(INFO *info){
     char choice;
@@ -111,9 +113,9 @@ void logout_page(INFO *info){
     std::cin.get();
     if (choice == 'y'){
         system("cls");
-        info->_page = 1;
+        info->_page = MAIN_MENU;
     }
-}
+} /* logout_page */
 
 void exit_page(INFO *info){
     char choice;
@@ -125,8 +127,8 @@ void exit_page(INFO *info){
         std::exit(1);
     }
     else
-        info->_page = 1;
-}
+        info->_page = MAIN_MENU;
+} /* exit_page */
 
 void show_result(INFO *info);
 

@@ -1,5 +1,5 @@
 
-#include "../../include/tools/string.h"
+// #include "../../include/tools/string.h"
 
 #ifndef _INFO_H_
 #define _INFO_H_
@@ -23,13 +23,19 @@
  * 
  * user:
  * - 101 manage your items (create item or order)
- *  - 111 : down
- *  - 121 : view
- *  - 131 : post
- *  - 141 : modify
+ *  - down | DOWN : 1
+ *  - view | VIEW : 2
+ *   - view [ITEM_ID | NAME] , ([ITEM_ID | NAME] , ...)
+ *   - view all
+ *  - post | POST : 3
+ *  - modify | MODIFY : 4
+ *   - modify [ITEM_ID | NAME]
  * - 102 all items
- *  - 112 : add new order
- *  - 122 : favorite
+ *  - buy | BUY : 5
+ *   - buy [ITEM_ID | NAME]
+ *   - (then show the detail item info)
+ *  - favorite | FAVORITE : 6
+ *   - (then confirm)
  * - 103 search
  * - 104 orders
  * - 013 logout
@@ -45,6 +51,11 @@
  * - 013 logout
  * 
  */
+
+typedef enum {WELCOME=0, MAIN_MENU=1, LOGIN=11, REGISTER=12, LOGOUT=13, EXIT=14, 
+              USER_MENU=100, ADMIN_MENU=200,
+              ITEM_HEAD, USER_HEAD, ORDER_HEAD,
+              CREATE_ITEM=101, CREATE_ORDER=102} PageName;
 
 struct INFO
 {

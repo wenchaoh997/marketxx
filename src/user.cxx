@@ -11,7 +11,7 @@ bool userSign(INFO *info, char *name, char *passward){
         std::perror("Error ");
         std::exit(1);
     }
-    else if (info->_page == 11){ // sign in
+    else if (info->_page == LOGIN){ // sign in
         char nameFeat[40], passwardFeat[20], _type;
         while (fgets(buf, 512, fp) != NULL){
             getValue(1, buf, nameFeat);
@@ -22,22 +22,24 @@ bool userSign(INFO *info, char *name, char *passward){
                 flag = true;
                 getValue(6, buf, &_type);
                 if (_type == '1')
-                    info->_page = 100;
+                    info->_page = USER_MENU;
                 else if (_type == '2')
-                    info->_page = 200;
+                    info->_page = ADMIN_MENU;
                 else
-                    info->_page = 1;
+                    info->_page = MAIN_MENU;
             }
             break;
         }
+        for (int i = 0; i < 6; i++)
+            info->id[i] = buf[i];
     }
-    else if (info->_page == 12){ // sign up
+    else if (info->_page == REGISTER){ // sign up
         // todo checkUniq
         if (!checkUniq(info, 1, name)){
-            info->_page = 1;
+            info->_page = MAIN_MENU;
             return false;
         }
-        info->_page = 1;
+        info->_page = MAIN_MENU;
         fclose(fp);
         fp = fopen("../src/dataset/user", "ab");
         char retChar[512];
@@ -72,4 +74,49 @@ bool userSign(INFO *info, char *name, char *passward){
         flag = true;
     }
     return flag;
+}
+
+void manage_items(INFO *info){
+    /*
+     * the common user can post or modify their items
+     * the admin can only modify the STATUS of items
+     */
+    std::cout << "\nEnter your operation on Items:\n";
+    std::cin.getline(info->command, 256);
+    std::cin.clear();
+
+    int commandType = loadCommand(info);
+
+    std::cout << "\n################\ncommandType : " << commandType << std::endl;
+
+    if (commandType == 1){ // down
+        // modify feat_5
+
+    }
+    else if (commandType == 2){ // view
+        show_itemValue(info);
+    }
+    else if (commandType == 3){ // post
+        info->_page = CREATE_ITEM;
+        post_item(info);
+    }
+    else if (commandType == 4){ // modify
+
+    }
+    else
+        std::cout << "\n[error] |Unexpected command, try again. \n";
+    if (info->_page < ADMIN_MENU) info->_page = USER_MENU;
+    else info->_page = ADMIN_MENU;
+}
+
+void manage_orders(INFO *info){
+
+    if (info->_page < ADMIN_MENU) info->_page = USER_MENU;
+    else info->_page = ADMIN_MENU;
+}
+
+void manage_users(INFO *info){
+
+    if (info->_page < ADMIN_MENU) info->_page = USER_MENU;
+    else info->_page = ADMIN_MENU;
 }
