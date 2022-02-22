@@ -54,11 +54,23 @@ bool chareq(char *a, char *b){
 }
 
 bool contains(char *a, const char *b){
-    int i = 0;
-    while (a[i] != '\0'){
-        if (a[i] == *(b)) return true;
-        i++;
+    // int i = 0;
+    // while (a[i] != '\0'){
+    //     if (a[i] == *(b)) return true;
+    //     i++;
+    // }
+    // return false;
+    return (contains(a, const_cast<char *>(b)));
+}
+
+bool contains(char *a, char *b){
+    int ia = 0, ib = 0;
+    while ((a[ia] != '\0') && (b[ib] != '\0')){
+        if (a[ia] == b[ib]) ib++;
+        ia++;
     }
+    if (b[ib] == '\0')
+        return true;
     return false;
 }
 
@@ -80,7 +92,7 @@ void getValue(int col, char *src, char *a, char splitc){
         i++;
     }
     int idx = 0;
-    while ((src[i] != '\0') && (src[i] != SPLIT) && (src[i] != '\n')){
+    while ((src[i] != '\0') && (src[i] != splitc) && (src[i] != '\n')){
         a[idx] = src[i];
         i++;idx++;
     }
@@ -186,7 +198,7 @@ int loadCommand(INFO *info){
     return ret;
 }
 
-bool isPosFloat(char *s){
+bool isPosFloat(char *s){ // only for (cin >> price)
     bool numBefore = false, numBehind = false, point = false;
     int count = 0;
     int idx = 0;

@@ -43,7 +43,8 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "cstring": "cpp",
-        "example.c": "cpp"
+        "example.c": "cpp",
+        "ctime": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

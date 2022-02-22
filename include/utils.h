@@ -16,6 +16,7 @@ bool chareq(const char *a, char *b);
 bool chareq(char *a, char *b);
 
 bool contains(char *a, const char *b);
+bool contains(char *a, char *b);
 
 void getValue(int col, char *src, char *a);
 void getValue(int col, char *src, char *a, char splitc);

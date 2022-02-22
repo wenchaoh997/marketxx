@@ -1,5 +1,6 @@
 
 #include "../include/order.h"
 
-void modify_orderValue();
-
+void post_order(INFO *info){
+    
+}

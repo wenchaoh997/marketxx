@@ -5,13 +5,14 @@
 bool checkUniqItemName(INFO *info, char *a){
     // add new Item
     bool flag = true;
-    char buf[512], curr[40];
+    char buf[512], curr[40], currID[7];
     FILE *fp = nullptr;
     fp = fopen("../src/dataset/item", "r");
 
     while (fgets(buf, 512, fp) != NULL){
         getValue(1, buf, curr);
-        if (chareq(a, curr)){
+        getValue(4, buf, currID);
+        if (chareq(a, curr) && chareq(info->id, currID)){
             flag = false;
             break;
         }
@@ -35,18 +36,86 @@ void show_itemValue(INFO *info){
         fp = fopen("../src/dataset/item", "r");
 
         if (fp == nullptr){
-            std::perror("Menu Error ");
+            std::perror("dataset Error ");
             exit(1);
         }
         show_table_head(ITEM_HEAD);
         while (fgets(buf, 512, fp) != NULL){
-            std::cout << ("%s\n", buf);
+            if (contains(buf, info->id))
+                std::cout << ("%s\n", buf);
         }
     }
-    else
-        std::cout << "Testing view all..\n";
+    else if (contains(info->command, "\t")){
+        // more than one item
+        fp = fopen("../src/dataset/item", "r");
 
+        if (fp == nullptr){
+            std::perror("dataset Error ");
+            exit(1);
+        }
+        show_table_head(ITEM_HEAD);
+
+        char currCommand[40], currName[40], currID[7];
+        while (info->command[0] != '\0'){
+            popValue(0, info->command, currCommand);
+
+            while (fgets(buf, 512, fp) != NULL){
+                getValue(4, buf, currID);
+                getValue(1, buf, currName);
+                if (chareq(currCommand, currID) || chareq(currCommand, currName))
+                    std::cout << ("%s\n", buf);
+            }
+        }
+    }
+    else{
+        // show only one item
+        fp = fopen("../src/dataset/item", "r");
+
+        if (fp == nullptr){
+            std::perror("dataset Error ");
+            exit(1);
+        }
+        char currName[40], currID[7], currUser[7], description[256];
+        // general info
+        while (fgets(buf, 512, fp) != NULL){
+            getValue(0, buf, currID);
+            getValue(1, buf, currName);
+            getValue(4, buf, currUser);
+            if (chareq(info->id, currUser) && (chareq(info->command, currID) || chareq(info->command, currName))){
+                std::cout << "\n# " << info->command << " #\n";
+                std::cout << "Name:   " << currName << std::endl;
+                getValue(2, buf, description);
+                std::cout << "Price:  " << description << std::endl;
+                getValue(3, buf, description);
+                std::cout << "Date:   " << description << std::endl;
+                getValue(4, buf, description);
+                std::cout << "Saler:  " << description << std::endl;
+                getValue(5, buf, description);
+                if (chareq(description, "1"))
+                    std::cout << "Status: " << "sold out" << std::endl;
+                else if (chareq(description, "2"))
+                    std::cout << "Status: " << "saling" << std::endl;
+                else if (chareq(description, "1"))
+                    std::cout << "Status: " << "took down" << std::endl;
+                else
+                    std::cout << "Status: " << "Unknown..." << std::endl;
+                getValue(0, currID, info->command);
+            }
+        }
+        fclose(fp);
+        // item description
+        fp = fopen("../src/dataset/item_desc", "r");
+        while (fgets(buf, 512, fp) != NULL){
+            getValue(0, buf, currID);
+            getValue(1, buf, currName);
+            if (chareq(info->command, currID)){
+                getValue(1, buf, description);
+                std::cout << "Description:\n  " << description << std::endl;
+            }
+        }
+    }
     // end
+    fclose(fp);
     std::cout << "********************************************************\n**End\n";
 }
 
@@ -117,7 +186,7 @@ void post_item(INFO *info){
         retChar[i] = dt[idx];
         i++; idx++;
     }
-    i -= 2; // a \n at the end of dt !!!
+    i -= 1; // a \n at the end of dt !!!
     retChar[i++] = SPLIT;
     // SALER_ID
     idx = 0;
