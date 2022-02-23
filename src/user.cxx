@@ -91,7 +91,7 @@ void manage_items(INFO *info){
 
     if (commandType == 1){ // down
         // modify feat_5
-
+        modify_itemStatus(info, "1");
     }
     else if (commandType == 2){ // view
         show_itemValue(info);

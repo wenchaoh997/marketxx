@@ -119,9 +119,75 @@ void popValue(int col, char *src, char *a, char splitc){
     src[idx] = '\0';
 }
 
+void modifyFeatValue(int col, FILE *fp, int fp_pos, char *buf, char *a){
+    modifyFeatValue(col, fp, fp_pos, buf, a, SPLIT);
+}
+
+void modifyFeatValue(int col, FILE *fp, int fp_pos, char *buf, char *a, char splitc){
+    if (col == 0) return ;
+    int count = 0, length = 0, oldLen = 0, rest_offset = 0;
+    int i = 0, idx = 0;
+    while (a[i] != '\0'){
+        length++;i++;
+    }
+    i = 0;
+    while ((buf[i] != '\0') && (count < col)){
+        if (buf[i] == splitc) count++;
+        i++;
+    }
+    while ((buf[i+oldLen] != splitc) && (buf[i+oldLen] != '\0')) 
+        oldLen++;
+
+    if (buf[i+oldLen] != '\0'){
+        // todo : maybe have BUG on idxs
+        oldLen--;
+        if (oldLen > length){
+            while (buf[i+idx] != '\0'){
+                buf[i+length+idx] = a[i+oldLen+idx];
+                idx++;
+            }
+            count = 0;
+        }
+        else{ // oldLen <= length
+            // move the chars behind
+            while (buf[i+oldLen+rest_offset] != '\0')
+                rest_offset++;
+            count = rest_offset;
+            while (rest_offset > 0){
+                buf[i+length+rest_offset] = buf[i+oldLen+rest_offset];
+                rest_offset--;
+            }
+        }
+    }
+    else{
+        buf[i+length] = '\0';
+        count = 0;
+    }
+    // insert chars
+    idx = 0;
+    while (idx < length){
+        buf[i+idx] = a[idx];
+        idx++;
+    }
+    // save the new record
+    length = fp_pos - (i+oldLen+count);
+    fseek(fp, length, SEEK_SET);
+    fprintf(fp, buf);
+    fclose(fp);
+
+    // modify successfully
+    // std::cout << "fp position: " << length << std::endl;
+    // std::cout << "i position: " << i << std::endl;
+    // std::cout << "oldLen position: " << oldLen << std::endl;
+    // std::cout << "count position: " << count << std::endl;
+    // std::cout << buf << std::endl;
+    std::cout << "**modify successfully\n";
+}
+
 bool checkUniq(INFO *info, int col, char *a){
     // add new user, or
     // check id is unique or not
+    // only common user can set up new item or order
     bool flag = true;
     char buf[512], curr[40];
     FILE *fp = nullptr;

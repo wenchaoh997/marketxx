@@ -21,7 +21,37 @@ bool checkUniqItemName(INFO *info, char *a){
     return flag;
 }
 
-void modify_itemStatus(INFO *info);
+void modify_itemStatus(INFO *info, const char *s){
+    modify_itemStatus(info, const_cast<char *>(s));
+}
+
+void modify_itemStatus(INFO *info, char *s){
+    // change the status in to s
+    FILE *fp = nullptr;
+    fp = fopen("../src/dataset/item", "rb+");
+    if (fp == nullptr){
+        std::perror("dataset Error ");
+        exit(1);
+    }
+    bool flag = false;
+    char buf[512], curr[40], currID[7];
+    while (fgets(buf, 512, fp) != NULL){
+        getValue(1, buf, curr);
+        getValue(4, buf, currID);
+        if (chareq(info->command, curr) && chareq(info->id, currID)){
+            flag = true;
+            break;
+        }
+    }
+    // std::cout << "Position in item.cxx: " << ftell(fp) << std::endl;
+    int fp_pos = ftell(fp);
+    if (flag)
+        modifyFeatValue(5, fp, fp_pos, buf, s);
+    else
+        std::cout << "[error] |The key word is not found. Please check and enter the full info.\n";
+
+    // modifyFeatValue
+}
 
 void show_itemValue(INFO *info){
     char curr[40];
@@ -179,6 +209,7 @@ void post_item(INFO *info){
     }
     retChar[i++] = SPLIT;
     // date
+    // todo : transform into "YYYY-MM-DD"
     idx = 0;
     time_t now = time(0);
     char* dt = ctime(&now);
@@ -218,4 +249,4 @@ void post_item(INFO *info){
     std::cout << "****Succeed****\n";
 }
 
-void modify_itemValue(INFO *info);
+void modify_itemInfo(INFO *info);

@@ -24,6 +24,9 @@ void getValue(int col, char *src, char *a, char splitc);
 void popValue(int col, char *src, char *a);
 void popValue(int col, char *src, char *a, char splitc);
 
+void modifyFeatValue(int col, FILE *fp, int fp_pos, char *buf, char *a);
+void modifyFeatValue(int col, FILE *fp, int fp_pos, char *buf, char *a, char splitc);
+
 bool checkUniq(INFO *info, int col, char *a);
 
 int loadCommand(INFO *info);
